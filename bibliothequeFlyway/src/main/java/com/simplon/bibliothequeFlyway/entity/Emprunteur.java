@@ -1,10 +1,12 @@
 package com.simplon.bibliothequeFlyway.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.List;
 
 @Entity
+@Table(name="emprunteur")
 public class Emprunteur {
 
     @Id
@@ -14,6 +16,7 @@ public class Emprunteur {
     private String email;
 
 
-    @OneToMany(mappedBy = "emprunteur")
+    @OneToMany(mappedBy = "emprunteur", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Emprunt> emprunts;
 }
